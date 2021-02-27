@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import ExperienceBar from '@/components/ExperienceBar';
 import Profile from '@/components/Profile';
+import CompletedChallenge from '@/components/CompletedChallenge';
 import styles from '@/styles/pages/Home.module.css';
 
 const Home: FC = () => {
@@ -11,6 +12,7 @@ const Home: FC = () => {
       <section>
         <div>
           <Profile />
+          <CompletedChallenge />
         </div>
         <div />
       </section>
