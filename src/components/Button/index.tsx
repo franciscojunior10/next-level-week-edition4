@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from '@/styles/components/Button.module.css';
 import { ButtonProps } from './props';
@@ -14,4 +14,4 @@ const Button: FC<ButtonProps> = props => {
   );
 };
 
-export default Button;
+export default memo(Button);

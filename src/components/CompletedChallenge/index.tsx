@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from '@/styles/components/CompletedChallenge.module.css';
 
@@ -11,4 +11,4 @@ const CompletedChallenge: FC = () => {
   );
 };
 
-export default CompletedChallenge;
+export default memo(CompletedChallenge);

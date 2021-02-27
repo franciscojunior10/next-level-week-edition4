@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from '@/styles/components/Profile.module.css';
 
@@ -20,4 +20,4 @@ const Profile: FC = () => {
   );
 };
 
-export default Profile;
+export default memo(Profile);

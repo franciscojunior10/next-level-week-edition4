@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import styles from '@/styles/components/ExperienceBar.module.css';
 
@@ -18,4 +18,4 @@ const ExperienceBar: FC = () => {
   );
 };
 
-export default ExperienceBar;
+export default memo(ExperienceBar);
