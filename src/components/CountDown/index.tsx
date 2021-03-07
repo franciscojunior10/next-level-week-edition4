@@ -1,11 +1,23 @@
-import React, { FC, useState, useCallback, useEffect, memo } from 'react';
+import React, {
+  FC,
+  useState,
+  useCallback,
+  useEffect,
+  memo,
+  useMemo,
+} from 'react';
 
 import styles from '@/styles/components/CountDown.module.css';
+import stylesButton from '@/styles/components/Button.module.css';
+
 import Button from '../Button';
 
+let countDownTimeout: NodeJS.Timeout;
+
 const CountDown: FC = () => {
-  const [time, setTime] = useState(25 * 60);
-  const [active, setActive] = useState(false);
+  const [time, setTime] = useState(0.1 * 60);
+  const [isActive, setIsActive] = useState(false);
+  const [hasFinished, setHasFinished] = useState(false);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -14,16 +26,48 @@ const CountDown: FC = () => {
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
 
   const handleStartCountDown = useCallback(() => {
-    setActive(true);
+    setIsActive(true);
   }, []);
 
+  const handleResetCountDown = useCallback(() => {
+    clearTimeout(countDownTimeout);
+    setIsActive(!isActive);
+    setTime(0.1 * 60);
+  }, [isActive]);
+
   useEffect(() => {
-    if (active && time > 0) {
-      setTimeout(() => {
+    if (isActive && time > 0) {
+      countDownTimeout = setTimeout(() => {
         setTime(time - 1);
       }, 1000);
+    } else if (isActive && time === 0) {
+      setHasFinished(true);
+      setIsActive(false);
     }
-  }, [active, time]);
+  }, [isActive, time]);
+
+  const buttonShow = useMemo(() => {
+    if (isActive) {
+      return (
+        <Button
+          className={`${stylesButton.countDownButton} ${stylesButton.countDownButtonActive}`}
+          type="button"
+          onClick={handleResetCountDown}
+        >
+          Abondonar ciclo
+        </Button>
+      );
+    }
+    return (
+      <Button
+        type="button"
+        className={stylesButton.countDownButton}
+        onClick={handleStartCountDown}
+      >
+        Iniciar um ciclo
+      </Button>
+    );
+  }, [handleResetCountDown, handleStartCountDown, isActive]);
 
   return (
     <div>
@@ -38,9 +82,13 @@ const CountDown: FC = () => {
           <span>{secondRight}</span>
         </div>
       </div>
-      <Button type="button" onClick={handleStartCountDown}>
-        Iniciar um ciclo
-      </Button>
+      {hasFinished ? (
+        <Button disabled className={stylesButton.countDownButton}>
+          Ciclo encerrado
+        </Button>
+      ) : (
+        <>{buttonShow}</>
+      )}
     </div>
   );
 };
