@@ -55,6 +55,7 @@ const CountDown: FC = () => {
           onClick={handleResetCountDown}
         >
           Abondonar ciclo
+          <img src="/icons/close.svg" alt="Abondonar Ciclo" />
         </Button>
       );
     }
@@ -65,6 +66,7 @@ const CountDown: FC = () => {
         onClick={handleStartCountDown}
       >
         Iniciar um ciclo
+        <img src="/icons/play_arrow.svg" alt="Inciar Ciclo" />
       </Button>
     );
   }, [handleResetCountDown, handleStartCountDown, isActive]);
@@ -85,6 +87,7 @@ const CountDown: FC = () => {
       {hasFinished ? (
         <Button disabled className={stylesButton.countDownButton}>
           Ciclo encerrado
+          <img src="/icons/check_circle.svg" alt="Ciclo Encerrado" />
         </Button>
       ) : (
         <>{buttonShow}</>
