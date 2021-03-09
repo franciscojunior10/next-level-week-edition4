@@ -1,0 +1,101 @@
+.challengeBoxcontainer {
+  height: 100%;
+  background: var(--white);
+  border-radius: 5px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.challengeNotActive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.challengeNotActive strong {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.challengeNotActive p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.4;
+  max-width: 70%;
+  margin-top: 3rem;
+}
+
+.challengeNotActive p img {
+  margin-bottom: 1rem;
+}
+
+.challeneActive {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.challeneActive header {
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 1.25rem;
+  padding: 0 2rem 1.5rem;
+  border-bottom: 1px solid var(--gray-line);
+}
+
+.challeneActive main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.challeneActive main strong {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--title);
+  margin: 1.5rem 0 1rem;
+}
+
+.challeneActive main p {
+  line-height: 1.5;
+}
+
+.challeneActive footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem
+}
+
+.challeneActive footer button {
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+}
+
+.challeneActive footer button.challengeFailedButton {
+  background: var(--red);
+}
+
+.challeneActive footer button.challengeSuccesedButton {
+  background: var(--green);
+}
+
+.challeneActive footer button:hover {
+  filter: brightness(0.9);
+}

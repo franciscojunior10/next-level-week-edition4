@@ -6,6 +6,7 @@ import styles from '@/styles/pages/Home.module.css';
 import CountDown from '@/components/CountDown';
 
 import Head from 'next/head';
+import ChallengeBox from '@/components/ChallengeBox';
 
 const Home: FC = () => {
   return (
@@ -22,7 +23,9 @@ const Home: FC = () => {
           <CompletedChallenge />
           <CountDown />
         </div>
-        <div />
+        <div>
+          <ChallengeBox />
+        </div>
       </section>
     </div>
   );
