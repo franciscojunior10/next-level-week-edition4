@@ -10,11 +10,14 @@ import React, {
 import styles from '@/styles/components/CountDown.module.css';
 import stylesButton from '@/styles/components/Button.module.css';
 
+import { useChallenges } from '@/hooks/challengesContext';
+
 import Button from '../Button';
 
 let countDownTimeout: NodeJS.Timeout;
 
 const CountDown: FC = () => {
+  const { startNewChallenge } = useChallenges();
   const [time, setTime] = useState(0.1 * 60);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
@@ -43,8 +46,9 @@ const CountDown: FC = () => {
     } else if (isActive && time === 0) {
       setHasFinished(true);
       setIsActive(false);
+      startNewChallenge();
     }
-  }, [isActive, time]);
+  }, [isActive, startNewChallenge, time]);
 
   const buttonShow = useMemo(() => {
     if (isActive) {

@@ -3,23 +3,29 @@ import React, { FC } from 'react';
 import styles from '@/styles/components/ChallengeBox.module.css';
 import Button from '@/components/Button';
 
+import { useChallenges } from '@/hooks/challengesContext';
+
 const ChallengeBox: FC = () => {
-  const hasActiveChallenge = true;
+  const { activeChallenge, resetChallenge } = useChallenges();
 
   return (
     <div className={styles.challengeBoxcontainer}>
-      {hasActiveChallenge ? (
+      {activeChallenge ? (
         <div className={styles.challeneActive}>
-          <header>Ganhe 400 xp</header>
+          <header>Ganhe {activeChallenge.amount} xp</header>
 
           <main>
-            <img src="/icons/body.svg" alt="Body" />
-            <strong>Novo ddesafio</strong>
-            <p>Levente e faça uma caminhada de 3 minutos.</p>
+            <img src={`/icons/${activeChallenge.type}.svg`} alt="Body" />
+            <strong>Novo desafio</strong>
+            <p>{activeChallenge.description}</p>
           </main>
 
           <footer>
-            <Button type="button" className={styles.challengeFailedButton}>
+            <Button
+              type="button"
+              className={styles.challengeFailedButton}
+              onClick={resetChallenge}
+            >
               Falhei
             </Button>
             <Button type="button" className={styles.challengeSuccesedButton}>
