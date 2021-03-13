@@ -4,6 +4,7 @@ import React, {
   useContext,
   useCallback,
   useState,
+  useEffect,
 } from 'react';
 
 import challenges from 'challenges.json';
@@ -23,6 +24,10 @@ const ChallengesProvider: FC = ({ children }) => {
   // eslint-disable-next-line no-restricted-properties
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
+  useEffect(() => {
+    Notification.requestPermission();
+  }, []);
+
   const levelUp = useCallback(() => {
     setLevel(level + 1);
   }, [level]);
@@ -31,6 +36,15 @@ const ChallengesProvider: FC = ({ children }) => {
     const randomChallengesIndex = Math.floor(Math.random() * challenges.length);
     const challenge = challenges[randomChallengesIndex];
     setactiveChallenge(challenge);
+
+    new Audio('/notification.mp3').play();
+
+    if (Notification.permission === 'granted') {
+      // eslint-disable-next-line no-new
+      new Notification('Novo desafio 🎉', {
+        body: `Valendo ${challenge.amount}xp`,
+      });
+    }
   }, []);
 
   const resetChallenge = useCallback(() => {
