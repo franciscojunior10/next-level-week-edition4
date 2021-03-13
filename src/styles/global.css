@@ -48,3 +48,18 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+*::-webkit-scrollbar {
+  width: 0.4em;
+  height: 0.4em;
+}
+
+*::-webkit-scrollbar-track {
+  box-shadow: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--green);
+  outline: none;
+  border-radius: 10px;
+}

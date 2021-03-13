@@ -8,6 +8,8 @@ import CountDown from '@/components/CountDown';
 import Head from 'next/head';
 import ChallengeBox from '@/components/ChallengeBox';
 
+import CountDownProvider from '@/hooks/countDownContext';
+
 const Home: FC = () => {
   return (
     <div className={styles.container}>
@@ -17,16 +19,18 @@ const Home: FC = () => {
 
       <ExperienceBar />
 
-      <section>
-        <div>
-          <Profile />
-          <CompletedChallenge />
-          <CountDown />
-        </div>
-        <div>
-          <ChallengeBox />
-        </div>
-      </section>
+      <CountDownProvider>
+        <section>
+          <div>
+            <Profile />
+            <CompletedChallenge />
+            <CountDown />
+          </div>
+          <div>
+            <ChallengeBox />
+          </div>
+        </section>
+      </CountDownProvider>
     </div>
   );
 };

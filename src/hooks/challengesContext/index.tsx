@@ -37,6 +37,31 @@ const ChallengesProvider: FC = ({ children }) => {
     setactiveChallenge(null);
   }, []);
 
+  const completeChallenge = useCallback(() => {
+    if (!activeChallenge) {
+      return;
+    }
+
+    const { amount } = activeChallenge;
+
+    let finalExperience = currentExperince + amount;
+
+    if (finalExperience >= experienceToNextLevel) {
+      finalExperience -= experienceToNextLevel;
+      levelUp();
+    }
+
+    setCurrentExperince(finalExperience);
+    setactiveChallenge(null);
+    setChallengesCompleted(challengesCompleted + 1);
+  }, [
+    activeChallenge,
+    challengesCompleted,
+    currentExperince,
+    experienceToNextLevel,
+    levelUp,
+  ]);
+
   return (
     <ChallengesContext.Provider
       value={{
@@ -48,6 +73,7 @@ const ChallengesProvider: FC = ({ children }) => {
         startNewChallenge,
         levelUp,
         resetChallenge,
+        completeChallenge,
       }}
     >
       {children}

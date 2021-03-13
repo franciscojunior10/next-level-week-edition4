@@ -1,54 +1,24 @@
-import React, {
-  FC,
-  useState,
-  useCallback,
-  useEffect,
-  memo,
-  useMemo,
-} from 'react';
+import React, { FC, memo, useMemo } from 'react';
 
 import styles from '@/styles/components/CountDown.module.css';
 import stylesButton from '@/styles/components/Button.module.css';
 
-import { useChallenges } from '@/hooks/challengesContext';
+import { useCountDown } from '@/hooks/countDownContext';
 
 import Button from '../Button';
 
-let countDownTimeout: NodeJS.Timeout;
-
 const CountDown: FC = () => {
-  const { startNewChallenge } = useChallenges();
-  const [time, setTime] = useState(0.1 * 60);
-  const [isActive, setIsActive] = useState(false);
-  const [hasFinished, setHasFinished] = useState(false);
-
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  const {
+    minutes,
+    seconds,
+    isActive,
+    resetCountDown,
+    startCountDown,
+    hasFinished,
+  } = useCountDown();
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
-
-  const handleStartCountDown = useCallback(() => {
-    setIsActive(true);
-  }, []);
-
-  const handleResetCountDown = useCallback(() => {
-    clearTimeout(countDownTimeout);
-    setIsActive(!isActive);
-    setTime(0.1 * 60);
-  }, [isActive]);
-
-  useEffect(() => {
-    if (isActive && time > 0) {
-      countDownTimeout = setTimeout(() => {
-        setTime(time - 1);
-      }, 1000);
-    } else if (isActive && time === 0) {
-      setHasFinished(true);
-      setIsActive(false);
-      startNewChallenge();
-    }
-  }, [isActive, startNewChallenge, time]);
 
   const buttonShow = useMemo(() => {
     if (isActive) {
@@ -56,7 +26,7 @@ const CountDown: FC = () => {
         <Button
           className={`${stylesButton.countDownButton} ${stylesButton.countDownButtonActive}`}
           type="button"
-          onClick={handleResetCountDown}
+          onClick={resetCountDown}
         >
           Abondonar ciclo
           <img src="/icons/close.svg" alt="Abondonar Ciclo" />
@@ -67,13 +37,13 @@ const CountDown: FC = () => {
       <Button
         type="button"
         className={stylesButton.countDownButton}
-        onClick={handleStartCountDown}
+        onClick={startCountDown}
       >
         Iniciar um ciclo
         <img src="/icons/play_arrow.svg" alt="Inciar Ciclo" />
       </Button>
     );
-  }, [handleResetCountDown, handleStartCountDown, isActive]);
+  }, [resetCountDown, startCountDown, isActive]);
 
   return (
     <div>

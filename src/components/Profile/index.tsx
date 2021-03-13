@@ -1,8 +1,11 @@
 import React, { FC, memo } from 'react';
 
+import { useChallenges } from '@/hooks/challengesContext';
 import styles from '@/styles/components/Profile.module.css';
 
 const Profile: FC = () => {
+  const { level } = useChallenges();
+
   return (
     <div className={styles.profileContainer}>
       <img
@@ -13,7 +16,7 @@ const Profile: FC = () => {
         <strong>Francisco Júnior</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
-          Level 1
+          Level {level}
         </p>
       </div>
     </div>

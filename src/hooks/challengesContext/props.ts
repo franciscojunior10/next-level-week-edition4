@@ -13,4 +13,5 @@ export interface ChallengeContextProps {
   startNewChallenge(): void;
   levelUp(): void;
   resetChallenge(): void;
+  completeChallenge(): void;
 }
