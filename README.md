@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-  ReactJS Application for Move.it project in :construction:
+  ReactJS Application for Move.it project version 1.0
 </h3>
 
 <p align="center">The best way to measure your work and reward!</p>
@@ -42,9 +42,9 @@
 </p>
 
 
-<!-- <p align="center">
-  <img alt="Gif" src="https://user-images.githubusercontent.com/33940202/86991362-4c14fe00-c175-11ea-94bf-21e6e93446da.gif" />
-</p> -->
+<p align="center">
+  <img alt="Gif" src="https://user-images.githubusercontent.com/33940202/111091329-53b15180-8511-11eb-90ec-6365b3c07231.gif" />
+</p>
 
 ## About the project :open_file_folder::
 
