@@ -2,14 +2,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react/react-in-jsx-scope */
 import '../styles/global.css';
-import ChallengesProvider from '@/hooks/challengesContext';
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <ChallengesProvider>
-      <Component {...pageProps} />;
-    </ChallengesProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

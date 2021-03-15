@@ -7,7 +7,7 @@ export interface CountDownContextProps {
 
   seconds: number;
 
-  startCountDown(): void;
+  startCountDown: () => void;
 
-  resetCountDown(): void;
+  resetCountDown: () => void;
 }

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, memo } from 'react';
 
 import styles from '@/styles/components/ChallengeBox.module.css';
 import Button from '@/components/Button';
@@ -16,15 +16,15 @@ const ChallengeBox: FC = () => {
 
   const { resetCountDown } = useCountDown();
 
-  const handleChallengeSucceded = useCallback(() => {
+  const handleChallengeSucceeded = useCallback(() => {
     completeChallenge();
     resetCountDown();
-  }, []);
+  }, [completeChallenge, resetCountDown]);
 
   const handleChallengeFailed = useCallback(() => {
     resetChallenge();
     resetCountDown();
-  }, []);
+  }, [resetChallenge, resetCountDown]);
 
   return (
     <div className={styles.challengeBoxcontainer}>
@@ -49,7 +49,7 @@ const ChallengeBox: FC = () => {
             <Button
               type="button"
               className={styles.challengeSuccesedButton}
-              onClick={handleChallengeSucceded}
+              onClick={handleChallengeSucceeded}
             >
               Completei
             </Button>
@@ -68,4 +68,4 @@ const ChallengeBox: FC = () => {
   );
 };
 
-export default ChallengeBox;
+export default memo(ChallengeBox);

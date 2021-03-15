@@ -1,4 +1,4 @@
-interface ChallengeProps {
+export interface ChallengeProps {
   type: 'body' | 'eye';
   description: string;
   amount: number;
@@ -6,12 +6,28 @@ interface ChallengeProps {
 
 export interface ChallengeContextProps {
   level: number;
-  currentExperince: number;
+
+  currentExperience: number;
+
   challengesCompleted: number;
+
   activeChallenge: ChallengeProps;
+
   experienceToNextLevel: number;
-  startNewChallenge(): void;
-  levelUp(): void;
-  resetChallenge(): void;
-  completeChallenge(): void;
+
+  startNewChallenge: () => void;
+
+  levelUp: () => void;
+
+  resetChallenge: () => void;
+
+  completeChallenge: () => void;
+
+  closeLevelUpModal: () => void;
+}
+
+export interface ChallengesProviderProps {
+  level: number;
+  currentExperience: number;
+  challengesCompleted: number;
 }

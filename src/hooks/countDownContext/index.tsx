@@ -14,17 +14,28 @@ const initialValue = {} as CountDownContextProps;
 
 export const CountDownContext = createContext(initialValue);
 
+let countDownTimeout: NodeJS.Timeout;
+
 const CountDownProvider: FC = ({ children }) => {
   const { startNewChallenge } = useChallenges();
-
-  let countDownTimeout: NodeJS.Timeout;
 
   const [time, setTime] = useState(0.1 * 60);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
 
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  useEffect(() => {
+    if (isActive && time > 0) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      countDownTimeout = setTimeout(() => {
+        setTime(time - 1);
+      }, 1000);
+    } else if (isActive && time === 0) {
+      startNewChallenge();
+      setHasFinished(true);
+      setIsActive(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive, time]);
 
   const startCountDown = useCallback(() => {
     setIsActive(true);
@@ -35,20 +46,10 @@ const CountDownProvider: FC = ({ children }) => {
     setIsActive(false);
     setTime(0.1 * 60);
     setHasFinished(false);
-  }, [countDownTimeout]);
+  }, []);
 
-  useEffect(() => {
-    if (isActive && time > 0) {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      countDownTimeout = setTimeout(() => {
-        setTime(time - 1);
-      }, 1000);
-    } else if (isActive && time === 0) {
-      setHasFinished(true);
-      setIsActive(false);
-      startNewChallenge();
-    }
-  }, [isActive, time]);
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
 
   return (
     <CountDownContext.Provider
