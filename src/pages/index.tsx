@@ -12,7 +12,11 @@ import CountDownProvider from '@/hooks/countDownContext';
 import ChallengesProvider from '@/hooks/challengesContext';
 import { GetServerSideProps } from 'next';
 
-import { HomeProps } from './props';
+interface HomeProps {
+  level: number;
+  currentExperience: number;
+  challengesCompleted: number;
+}
 
 const Home: FC<HomeProps> = ({
   challengesCompleted,
