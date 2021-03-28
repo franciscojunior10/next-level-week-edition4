@@ -13,6 +13,7 @@ import Head from 'next/head';
 import ChallengeBox from '@/components/ChallengeBox';
 
 import CountDownProvider from '@/hooks/countDownContext';
+import AuthProvider from '@/hooks/authContext';
 
 interface HomeProps {
   level: number;
@@ -26,32 +27,34 @@ const Details: FC<HomeProps> = ({
   currentExperience,
 }) => {
   return (
-    <ChallengesProvider
-      level={level}
-      currentExperience={currentExperience}
-      challengesCompleted={challengesCompleted}
-    >
-      <CountDownProvider>
-        <main className={styles.container}>
-          <Head>
-            <title>Início | move.it</title>
-          </Head>
+    <AuthProvider>
+      <ChallengesProvider
+        level={level}
+        currentExperience={currentExperience}
+        challengesCompleted={challengesCompleted}
+      >
+        <CountDownProvider>
+          <main className={styles.container}>
+            <Head>
+              <title>Início | move.it</title>
+            </Head>
 
-          <ExperienceBar />
+            <ExperienceBar />
 
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenge />
-              <CountDown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </main>
-      </CountDownProvider>
-    </ChallengesProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenge />
+                <CountDown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </main>
+        </CountDownProvider>
+      </ChallengesProvider>
+    </AuthProvider>
   );
 };
 

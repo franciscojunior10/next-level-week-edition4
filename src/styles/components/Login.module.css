@@ -52,7 +52,7 @@
   margin-left: 24px;
 }
 
-.containerInput {
+.containerInput .containerForm {
   margin-top: 40px;
   display: flex;
   align-items: center;
@@ -75,7 +75,7 @@
   color: var(--text-blue);
 }
 
-.containerInput button {
+.containerInput .buttonSubmit {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,7 +86,8 @@
   border: none;
 }
 
-.containerInput button img {
+
+.containerInput .buttonSubmit img {
   width: 24px;
   height: 24px;
 }
@@ -99,7 +100,7 @@
   }
 
   .imageBackground {
-      display: none;
+    display: none;
   }
 
   .content {

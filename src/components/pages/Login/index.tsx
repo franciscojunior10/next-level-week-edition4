@@ -1,11 +1,30 @@
-import React, { FC } from 'react';
+import React, { FC, FormEvent, useCallback, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
 import styles from '@/styles/components/Login.module.css';
 
+import { useAuth } from '@/hooks/authContext';
+
 const Login: FC = () => {
   const router = useRouter();
+
+  const [nameUser, setNameUser] = useState('');
+
+  const { signIn } = useAuth();
+
+  const handleSignIn = useCallback(
+    async (event: FormEvent) => {
+      try {
+        event.preventDefault();
+        await signIn(nameUser);
+        router.push('/details');
+      } catch (error) {
+        alert('Dados não conferem!');
+      }
+    },
+    [nameUser, router, signIn],
+  );
 
   return (
     <div className={styles.container}>
@@ -28,10 +47,20 @@ const Login: FC = () => {
           </span>
         </div>
         <div className={styles.containerInput}>
-          <input type="text" placeholder="Digite seu username" />
-          <button type="submit" onClick={() => router.push('/details')}>
-            <img src="/images/seta.svg" alt="Icone" />
-          </button>
+          <form onSubmit={handleSignIn} className={styles.containerForm}>
+            <input
+              type="text"
+              required
+              placeholder="Digite seu username"
+              value={nameUser}
+              onChange={event => {
+                setNameUser(event.target.value);
+              }}
+            />
+            <button type="submit" className={styles.buttonSubmit}>
+              <img src="/images/seta.svg" alt="Icone" />
+            </button>
+          </form>
         </div>
       </div>
     </div>
