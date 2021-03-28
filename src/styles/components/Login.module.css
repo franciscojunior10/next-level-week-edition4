@@ -1,0 +1,135 @@
+.container {
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--blue);
+}
+
+.imageBackground {
+  width: 768px;
+  height: 660px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-right: 200px;
+}
+
+.imageLogo {
+  width: 360px;
+  height: 76px;
+}
+
+.content h1 {
+  margin-top: 112px;
+  color: var(--white);
+  font: Inter;
+  font-weight: 600;
+  font-size: 36px;
+  margin-bottom: 24px;
+}
+
+.containerGithub {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.imageLogoGithub {
+  width: 40px;
+  height: 40px;
+}
+
+.containerGithub span {
+  font: Inter;
+  font-weight: 500;
+  color: var(--text-blue);
+  font-size: 20px;
+  margin-left: 24px;
+}
+
+.containerInput {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.containerInput input {
+  width: 340px;
+  height: 80px;
+  background: linear-gradient(90deg, #4953B8 0%, rgba(73, 83, 184, 0.2) 100%);
+  border-radius: 5px 0px 0px 5px;
+  border: 0;
+}
+
+.containerInput input[type="text"]{
+  padding-left: 24px;
+  color: var(--white)
+}
+
+.containerInput input::placeholder{
+  color: var(--text-blue);
+}
+
+.containerInput button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--blue-dark);
+  border-radius: 0px 5px 5px 0px;
+  width: 80px;
+  height: 80px;
+  border: none;
+}
+
+.containerInput button img {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 1320px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imageBackground {
+      display: none;
+  }
+
+  .content {
+    padding-right: 0px;
+  }
+
+  .containerGithub span {
+    font-size: 16px;
+  }
+}
+
+
+@media (max-width: 767.98px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content {
+    padding-right: 0px;
+    width: 300px;
+  }
+
+  .imageBackground {
+    display: none;
+  }
+
+  .imageLogo {
+    width: 300px;
+    height: 76px;
+  }
+}
