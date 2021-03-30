@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-import { AuthContextProps, DataUserProps } from './props';
+import { AuthContextProps, AuthState, UserProps } from './props';
 
 const initialValue = {} as AuthContextProps;
 
@@ -15,24 +15,26 @@ const AuthContext = createContext(initialValue);
 
 const AuthProvider: FC = props => {
   const { children } = props;
-  const [dataUser, setDataUser] = useState<DataUserProps>({
-    avatar_url: '',
-    name: '',
+  const [data, setData] = useState<AuthState>(() => {
+    return {} as AuthState;
   });
 
   const signIn = useCallback(async (user: string) => {
-    const response = await api.get<DataUserProps>(`/${user}`);
+    const response = await api.get<UserProps>(`/${user}`);
 
-    const userData: DataUserProps = {
-      avatar_url: response.data.avatar_url,
-      name: response.data.name,
-    };
+    localStorage.setItem('@Movit:user', JSON.stringify(response.data));
 
-    setDataUser(userData);
+    setData({ user: response.data });
+  }, []);
+
+  const signOut = useCallback(() => {
+    localStorage.removeItem('@Movit:user');
+
+    setData({} as AuthState);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, dataUser }}>
+    <AuthContext.Provider value={{ signIn, user: data.user, signOut }}>
       {children}
     </AuthContext.Provider>
   );

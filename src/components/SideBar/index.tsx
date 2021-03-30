@@ -1,13 +1,21 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { FC, memo, useMemo } from 'react';
+import React, { FC, memo, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
 
 import styles from '@/styles/components/SideBar.module.css';
+import { useAuth } from '@/hooks/authContext';
 import { SideBarProps } from './props';
 
 const SideBar: FC<SideBarProps> = ({ isActiveIconHome, isActiveIconAward }) => {
   const routes = useRouter();
+
+  const { signOut } = useAuth();
+
+  const handlesignOut = useCallback(() => {
+    routes.push('/');
+    signOut();
+  }, [routes, signOut]);
 
   const renderIconHome = useMemo(() => {
     if (isActiveIconHome) {
@@ -71,7 +79,7 @@ const SideBar: FC<SideBarProps> = ({ isActiveIconHome, isActiveIconAward }) => {
       <div className={styles.contentIconAward}>{renderIconAward}</div>
 
       <div className={styles.contentFooter}>
-        <button type="button" onClick={() => routes.push('/')}>
+        <button type="button" onClick={handlesignOut}>
           Sair
         </button>
       </div>

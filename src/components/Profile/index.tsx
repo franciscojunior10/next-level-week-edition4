@@ -6,13 +6,13 @@ import styles from '@/styles/components/Profile.module.css';
 
 const Profile: FC = () => {
   const { level } = useChallenges();
-  const { dataUser } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className={styles.profileContainer}>
-      <img src={dataUser.avatar_url} alt={dataUser.name} />
+      <img src={user.avatar_url} alt={user.name} />
       <div>
-        <strong>{dataUser.name}</strong>
+        <strong>{user.name}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
           Level {level}
