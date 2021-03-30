@@ -1,9 +1,13 @@
 .container {
-  width: 112px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--white);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 112px;
+  height: 100%;
 }
 
 .iconLogo {

@@ -10,9 +10,9 @@ const Profile: FC = () => {
 
   return (
     <div className={styles.profileContainer}>
-      <img src={user.avatar_url} alt={user.name} />
+      <img src={user?.avatar_url} alt={user?.name} />
       <div>
-        <strong>{user.name}</strong>
+        <strong>{user?.name}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
           Level {level}

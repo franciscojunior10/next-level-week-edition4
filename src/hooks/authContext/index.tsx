@@ -16,6 +16,12 @@ const AuthContext = createContext(initialValue);
 const AuthProvider: FC = props => {
   const { children } = props;
   const [data, setData] = useState<AuthState>(() => {
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('@Movit:user');
+
+      return { user: JSON.parse(user) };
+    }
+
     return {} as AuthState;
   });
 

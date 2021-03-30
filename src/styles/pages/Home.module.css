@@ -19,3 +19,20 @@
 .content {
   display: flex;
 }
+
+@media (max-width: 665px) {
+  .container section {
+   display: flex;
+   flex-direction: column;
+  }
+
+  .container {
+    margin-left: 9.0rem;
+  }
+}
+
+@media (min-width: 667px) and (max-width: 1200px) {
+  .container {
+    margin-left: 9.0rem;
+  }
+}
