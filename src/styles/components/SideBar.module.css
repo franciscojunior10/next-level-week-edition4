@@ -1,0 +1,77 @@
+.container {
+  width: 112px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+}
+
+.iconLogo {
+  margin-top: 32px;
+  width: 48px;
+  height: 42px;
+  margin-left: 32px;
+}
+
+.contentIconHome {
+  margin-top: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.contentIconHome .iconHomeActive {
+  width: 4px;
+  height: 56px;
+  background: var(--blue);
+  border-radius: 0px 5px 5px 0px;
+}
+
+.contentIconHome .iconHome {
+  width: 32px;
+  height: 32px;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.contentIconAward {
+  margin-top: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.contentIconAward .iconActiveAward {
+  width: 4px;
+  height: 56px;
+  background: var(--blue);
+  border-radius: 0px 5px 5px 0px;
+}
+
+.contentIconAward .iconAward {
+  width: 32px;
+  height: 32px;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.contentFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0 30px;
+}
+
+.contentFooter button {
+  width: 100%;
+  border: none;
+  background: none;
+  font: Inter;
+  font-size: 18px;
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.contentFooter button:hover {
+  color: var(--blue-dark);
+}

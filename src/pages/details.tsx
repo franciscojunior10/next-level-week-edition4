@@ -9,6 +9,8 @@ import CountDown from '@/components/CountDown';
 
 import { GetServerSideProps } from 'next';
 
+import SideBar from '@/components/SideBar';
+
 import Head from 'next/head';
 import ChallengeBox from '@/components/ChallengeBox';
 
@@ -32,24 +34,27 @@ const Details: FC<HomeProps> = ({
       challengesCompleted={challengesCompleted}
     >
       <CountDownProvider>
-        <main className={styles.container}>
-          <Head>
-            <title>Início | move.it</title>
-          </Head>
+        <div className={styles.content}>
+          <SideBar isActiveIconHome isActiveIconAward={false} />
+          <main className={styles.container}>
+            <Head>
+              <title>Início | move.it</title>
+            </Head>
 
-          <ExperienceBar />
+            <ExperienceBar />
 
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenge />
-              <CountDown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </main>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenge />
+                <CountDown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </main>
+        </div>
       </CountDownProvider>
     </ChallengesProvider>
   );
